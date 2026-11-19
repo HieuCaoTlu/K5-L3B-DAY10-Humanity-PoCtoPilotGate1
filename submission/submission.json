@@ -1,6 +1,10 @@
 {
-  "team": "",
-  "members": [],
+  "team": "Humanity",
+  "members": [
+    "CaoTrungHieu-2A202603993",
+    "CaoPhamThanhDat-2A202603970",
+    "DangQuangDuy-2A202603984"
+  ],
   "incident": "",
   "decision_v1": "",
   "decision_v2": "",
