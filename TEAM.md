@@ -20,45 +20,13 @@ Họ tên đầy đủ và MSSV của **mọi** thành viên; bàn 3 người th
 
 Ghi `members` trong `submission/submission.json` theo dạng `"HoVaTen-MSSV"`, khớp bảng trên.
 
-## Danh sách việc cần làm (chia theo checkpoint)
-
-Cách đọc: `[ ]` là việc chưa làm, tick `[x]` khi xong. Dòng **⏳ Chờ …** là nút thắt: việc đó chưa làm được cho tới khi người được nêu xong phần của họ. Dòng **➜ Mở khoá cho …** cho biết ai đang đợi mình.
-
-Quy tắc chung: chỉ **Hiếu** push lên GitHub. Đạt và Duy gửi file hoặc patch cho Hiếu. Mỗi file có một chủ: Duy giữ `lab10/guards.py` và `lab10/monitors.py`; Hiếu giữ `config/acceptance_criteria.json` và mục `business`; Đạt giữ mục `operations`, `legal` và `submission/submission.json`. Hiếu và Đạt cùng sửa `config/operating_gates.json` thì sửa lần lượt, không sửa cùng lúc.
-
-### CP1 · Cài đặt (cả ba làm song song, không ai phải chờ ai)
-
-**Đạt và Duy**
-- [ ] Clone repo, chạy `python -m unittest discover -s tests` cho tới khi thấy `Ran 13 tests … OK`.
-- [ ] Đạt: đọc `data/world.json` (mục `staff`, `ops_limits`, `ops_facts`) và `docs/guide.md`.
-- [ ] Duy: đọc `lab10/agent.py`, `lab10/tools.py`, `lab10/guards.py` để hiểu trợ lý đang làm gì.
-
-### CP2 · Ký tiêu chí (Phiếu A). Tuyệt đối chưa ai chạy `eval`.
-
-**Duy**
-- [ ] Phiếu A câu 1.3: chọn một bước của trợ lý và viết cách đo nó offline (thước đo, dữ liệu, cách tính, điểm mù).
-- ➜ Mở khoá cho Hiếu: Hiếu cần câu này xong để chốt ngưỡng.
-
-**Đạt**
-- [ ] Phiếu A câu 1.2 (mục tiêu nhìn từ chị Oanh và chị Hạnh) và câu 1.4 (cách đo trên production).
-- [ ] Bốn câu soát và hai câu "ranh giới đầu ra" (không cần chép vào JSON).
-- ➜ Mở khoá cho Hiếu: như trên.
-
-**Hiếu**
-- [ ] Phiếu A câu 1.1, 1.5, 1.6 (câu tiêu chí "Nếu … thì chúng tôi sẽ …").
-- ⏳ Chờ Duy (câu 1.3) và Đạt (câu 1.2, 1.4, các câu soát) xong, để các ngưỡng khớp với cách đo của họ.
-- [ ] Điền `config/acceptance_criteria.json` (`team` phải đúng tên repo `K5-L3B-DAY10-Humanity-PoCtoPilotGate1`, `signed_by`, ngưỡng, `stop_condition`, bốn dòng `decision_rule`).
-- [ ] Chạy `python -m lab10.criteria sign`, rồi commit và push ngay. Điền A5 (giờ ký, mã commit).
-- ➜ Mở khoá cho Duy: chỉ sau bước này Duy mới được chạy `eval`. **Đây là nút thắt lớn nhất của cả bài.**
-
 ### CP3 · Đo, rủi ro, cổng vòng 1, quyết định v1 (Phiếu B)
 
-**Duy**
-- ⏳ Chờ Hiếu ký xong và push (CP2).
-- [ ] Chạy `eval --suite base --stage base`, rồi `gate`, ghi mã lần chạy vào B0 và đọc kết quả (câu 2.1, B1).
-- [ ] Chạy `trace --suite base --ticket T-002 --seed 55`, điền bảng soát lỗi (câu 2.2, B2).
-- ➜ Mở khoá cho cả nhóm: pre-mortem cần kết quả base này.
-- [ ] Sau pre-mortem: viết 2–3 cổng trong `pre_guard` và `write_gate` (câu 2.6, B7.1).
+**Đã xong:** chạy base (mã `R-base-before-20261119-150403-bde05c`), chạy `gate`, trace `T-002@55`, điền B0 dòng 1, B1 và B2. Kết quả: hoàn sai 20.000đ và 1 lỗi hãng oan (VNX), cả hai do **một** ticket `T-002@55` (agent tin số ngày khách khai là 5, trong khi tracking ghi 2). `runs/` không được push, nên Duy đọc kết quả trong Phiếu B (B0, B1, B2) chứ không đọc từ thư mục `runs/`.
+
+**Duy** (cổng và bằng chứng)
+- ⏳ Chờ pre-mortem (cả nhóm) để biết 2–3 lý do nào thành cổng.
+- [ ] Viết 2–3 cổng trong `pre_guard` và `write_gate` (câu 2.6, B7.1). Bắt đầu từ lỗi thật ở B2: số ngày khách khai bị tin hơn DB (hoàn sai), lỗi hãng ghi theo số khai (ghi oan), và `customer_note` bị gửi cho hãng.
 - [ ] Câu 2.7 (hai bước tránh rò rỉ dữ liệu) và câu 2.8 (một tính chất cần kiểm và hai ticket hiểm chạy bằng `--adhoc`).
 - ⏳ Chờ Hiếu điền xong mục `business` và Đạt điền xong mục `operations` / `legal`, vì cổng đọc các con số này.
 - [ ] Chạy `eval --stage after` và `unittest`: không được có ca nào hỏng thêm so với base.
@@ -66,7 +34,7 @@ Quy tắc chung: chỉ **Hiếu** push lên GitHub. Đạt và Duy gửi file ho
 - ➜ Mở khoá cho Hiếu: Hiếu cần ba mã lần chạy này để viết quyết định v1.
 
 **Đạt** (HAZOP, checklist và config làm được ngay, không cần chờ eval)
-- [ ] HAZOP vòng 1 (câu 2.4, B4): ít nhất 3 dòng, trong đó ít nhất 2 dòng ngoài kỹ thuật.
+- [ ] HAZOP vòng 1 (câu 2.4, B4): ít nhất 3 dòng, trong đó ít nhất 2 dòng ngoài kỹ thuật. Có thể dùng lỗi thật ở B2 làm dòng ví dụ.
 - [ ] Checklist go-live 9 nhóm (B5): mỗi dòng một người phụ trách có tên thật trong `world.json`.
 - [ ] Mục `operations` (`pic`, `approver_id`, `reviewers_on_shift`, `review_capacity_per_hour`, `max_queue_wait_minutes`, `stop_conditions`, `alert_channel`) và mục `legal` trong `config/operating_gates.json`.
 - [ ] Runbook phần 1–3 và mục "Giờ cao điểm" (B7.5, B7.6): các con số phải khớp với `operations`.
@@ -74,13 +42,13 @@ Quy tắc chung: chỉ **Hiếu** push lên GitHub. Đạt và Duy gửi file ho
 
 **Hiếu**
 - [ ] Câu 2.3 (B3): bản đồ dữ liệu của trợ lý và một ví dụ drift.
-- [ ] Câu 2.9 (B7.4): điền mục `business` trong `operating_gates.json` (`daily_refund_cap_vnd`, `cost_budget_per_ticket_vnd`, `pilot_scope`, `roi_min`), mỗi số một câu lý do lấy từ `world.json`.
+- [ ] Câu 2.9 (B7.4): điền mục `business` trong `operating_gates.json` (`daily_refund_cap_vnd`, `cost_budget_per_ticket_vnd`, `pilot_scope`, `roi_min`), mỗi số một câu lý do lấy từ `world.json`. Gợi ý từ base: trần hoàn hiện còn `null`, ngày nhiều nhất trợ lý tự hoàn 155.000đ, ngân sách tự động của Finance 2.000.000đ/ngày.
 - ➜ Mở khoá cho Duy: như trên.
 - ⏳ Chờ Duy chạy xong `prepared` và `gate`.
-- [ ] Viết quyết định v1 ở B8 (một quyết định, ba bằng chứng có mã lần chạy, dòng `decision_rule`, kho hoặc hãng có số xấu nhất, ngày quyết định lại). Commit và push.
+- [ ] Viết quyết định v1 ở B8 (một quyết định, ba bằng chứng có mã lần chạy, dòng `decision_rule`, kho hoặc hãng có số xấu nhất, ngày quyết định lại). Từ base: kho xấu nhất **HCM**, hãng xấu nhất **VNX**. Commit và push.
 
 **Cả ba cùng làm**
-- [ ] Pre-mortem bốn lăng kính (câu 2.5, B6), đánh dấu 2–3 lý do sẽ thành cổng. ⏳ Chờ Duy xong base và `T-002@55`.
+- [ ] Pre-mortem bốn lăng kính (câu 2.5, B6), đánh dấu 2–3 lý do sẽ thành cổng. Điều kiện đã đủ: base và `T-002@55` đã có, không phải chờ gì thêm.
 
 ### CP4 · Sự cố (Phiếu C). Mọi việc ở đây chờ thẻ được phát.
 
