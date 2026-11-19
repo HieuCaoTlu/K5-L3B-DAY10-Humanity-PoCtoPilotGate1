@@ -68,11 +68,15 @@ CP5: tổng hợp bằng chứng và đề xuất quyết định Gate 1 v2 ở 
 
 ### Đóng góp cụ thể
 
-Đối chiếu hai bộ thử với tiêu chí đã ký, ghi giới hạn còn lại của dữ liệu mock và chép ba dòng từ C12 vào `submission/submission.json`. Dùng Codex để đọc repo, soạn nội dung CP5 và chạy kiểm tra.
+- **Quyết định Gate 1 v2:** Chạy lại tự kiểm S3 và bộ nền, xác minh hash tiêu chí và bản chốt vòng 1, rồi đối chiếu các ngưỡng đã ký. Điền C12 với đề xuất **Tiếp tục** sang pilot có giám sát, các rủi ro cần theo dõi và ba dòng bắt buộc. Quyết định chờ Hiếu xác nhận.
+- **Hồ sơ nộp:** Điền thẻ S3, quyết định v1/v2 và chép nguyên ba câu từ C12 vào `submission/submission.json`. Gộp 27 bản ghi gốc của nhóm với 9 bản ghi CP5, chạy `python -m lab10.check_submission --collect` và kiểm tra 19 mã băm trong manifest khớp các tệp đã đưa vào Git.
+- **Dùng AI:** Dùng Codex để đọc repo, soạn nội dung CP5, chạy kiểm tra và gom hồ sơ.
 
 ### Bằng chứng
 
-Phiếu C mục C12 và báo cáo `R-S3-grade-20261119-165233-5a895f`. Trên S3 after, pass_rate và pass_k đều 1,0, chi phí 4.405đ/ticket và ROI 1,27. Bộ nền after cũng đạt hai chỉ số chất lượng và không có ca ùn.
+- **Commit và PR:** `a9d0501`, PR #3 của repo nhóm. Xem Phiếu C mục C12 và `submission/manifest.json`.
+- **Báo cáo S3:** `R-S3-grade-20261119-165233-5a895f` · `PASS-VISIBLE`. Mốc after đạt pass_rate và pass_k đều 1,0, chi phí 4.405đ/ticket, ROI 1,27, ùn 0. Bộ nền after (`R-base-after-20261119-165156-5a895f`) cũng đạt pass_rate và pass_k 1,0, ùn 0. Cả hai bộ có 0 đồng hoàn sai, 0 lỗi hãng oan và 0 lần lộ dữ liệu.
+- **Tự kiểm hồ sơ:** 13/13 unit test đạt. Lệnh gom in **ĐỦ THÀNH PHẦN**. Nhật ký giữ lần chạy đầu lúc 15:04:03, sau commit ký gốc `41713ec` lúc 15:00:30 và trước giờ ký lại trong lock (15:34:41). Cảnh báo thời gian vẫn còn để nhóm chấm đối chiếu.
 
 ### Exit ticket
 
