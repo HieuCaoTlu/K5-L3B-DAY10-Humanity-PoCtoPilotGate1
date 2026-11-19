@@ -407,7 +407,7 @@ Ghi các dòng đổi sau sự cố. Mỗi dòng vẫn phải có một PIC có 
 | 4 (Quyền hạn) | Xong cổng; Chưa diễn tập vận hành thật | `deny` riêng lệnh ghi lỗi khi chạm trần (`R-S3-after-20261119-163043-d40733`); ca lỗi thứ ba chưa vào hàng chờ của người duyệt | Trần Thị Hạnh / NV-HANH |
 | 6 (Chi phí) | Xong ở bộ nền và gói sự cố | Gói sự cố after: 4.405đ/ticket, ROI 1,27; bộ nền after: 4.456đ, ROI 1,24 (`R-S3-grade-20261119-163112-817d2f`, `R-base-after-20261119-163102-817d2f`) | Phạm Kiều Oanh / NV-OANH |
 | 8 (Con người/pháp lý) | Xong kiểm thử trên mock; Chưa tín hiệu production | Lỗi hãng oan 35 về 0 trên gói sự cố; còn cần log phản đối của hãng ngoài lab | Phạm Kiều Oanh / NV-OANH |
-| 9 (Quyết định) | Chưa (chờ C12) | Quyết định v2 viết ở C12 | Cao Trung Hiếu / 2A202603993 |
+| 9 (Quyết định) | Xong | C12 ghi quyết định v2 Tiếp tục sang pilot có giám sát, dựa trên báo cáo R-S3-grade-20261119-165233-5a895f. Hồ sơ CP5 đã được merge qua PR #3. | Cao Trung Hiếu / 2A202603993 |
 
 ### Runbook 4 · Sau sự cố trên thẻ (vòng 2)
 
@@ -440,18 +440,18 @@ Ghi các dòng đổi sau sự cố. Mỗi dòng vẫn phải có một PIC có 
 | Mã lần chạy dùng làm bằng chứng | S3 base `R-S3-before-20261119-165233-5a895f` · prepared `R-S3-prepared-20261119-165233-5a895f` · after `R-S3-after-20261119-165233-5a895f`. |
 | Còn dòng “vượt trần” nào trong report? | Không. Trên S3, chờ lâu nhất 0 phút, ùn 0, tự hoàn tối đa 109.400đ/ngày dưới 2.000.000đ, LLM tối đa 771đ/ticket dưới 1.500đ. |
 | Kho hoặc hãng có số xấu nhất | Trong gói S3 after, HN có chi phí cao nhất (4.190đ/ticket), dưới trần 6.000đ. Mọi hãng đạt pass_rate 1,0, không có hoàn sai, ghi lỗi oan hay lộ dữ liệu. Quyết định không đổi nếu chỉ xét HN. Trên bộ nền, nhóm chưa xác định kho “?” vẫn tốn 10.359đ/ticket và được chuyển xử lý tay. |
-| Quyết định | **Tiếp tục** sang pilot có giám sát trong phạm vi đã đánh giá. |
+| Quyết định | **Tiếp tục** sang pilot có giám sát trong phạm vi đã đánh giá. Quyết định đã được xác nhận trong CP5. |
 | Bằng chứng 1 | `R-S3-grade-20261119-165233-5a895f`: after trên S3 và bộ nền đều có pass_rate 1,0 ≥ 0,97, pass_k 1,0 ≥ 0,95, hoàn sai 0đ, lỗi hãng oan 0, lộ dữ liệu 0. Bộ nền không có ca mới hỏng. |
 | Bằng chứng 2 | Cùng report: S3 4.405đ/ticket, ROI 1,27, ùn 0; bộ nền 4.456đ/ticket, ROI 1,24, ùn 0. Cả hai đạt chi phí ≤ 6.000đ, ROI ≥ 0,5, ùn = 0. |
 | Bằng chứng 3 | Cùng report: trên S3, từ base đến after hoàn sai giảm 900.000đ về 0đ, lỗi oan 35 về 0, pass_rate tăng từ 0,25 lên 1,0. |
 | Khớp dòng nào trong decision_rule đã ký? | **Tiếp tục.** Cả năm chỉ số bắt buộc và ba ngưỡng business_ops đạt trên bộ nền và S3, report không còn dòng vượt trần. |
 | Nếu Thu hẹp / Cải tiến thêm / Dừng | Không áp dụng với quyết định hiện tại. |
 | Ngày quyết định lại | 26/11/2026 theo lịch xem lại đã ghi ở A4. |
-| PIC ký | Cao Trung Hiếu / 2A202603993 (trưởng nhóm, chờ xác nhận). |
+| PIC và xác nhận | PIC: Cao Trung Hiếu / 2A202603993. Cao Phạm Thành Đạt / 2A202603970 (phụ trách CP5) xác nhận quyết định v2 Tiếp tục sang pilot có giám sát. Trưởng nhóm HieuCaoTlu đã merge hồ sơ CP5 qua PR #3. |
 
 **Chỉ ở v2**
 
-- Giữ nhãn Tiếp tục và đổi bước kế tiếp: v1 chỉ tiếp tục đánh giá offline, v2 có đủ kết quả S3 để đề xuất pilot có giám sát. Pass_rate và pass_k của S3 tăng từ 0,6667 ở prepared lên 1,0 ở after.
+- Giữ nhãn Tiếp tục và đổi bước kế tiếp: v1 chỉ tiếp tục đánh giá offline, v2 có đủ kết quả S3 để tiếp tục sang pilot có giám sát. Pass_rate và pass_k của S3 tăng từ 0,6667 ở prepared lên 1,0 ở after.
 - Report tự kiểm tra `R-S3-grade-20261119-165233-5a895f` trả về PASS-VISIBLE. Các kiểm tra nhìn thấy đều đạt, phần kiểm thử ẩn để team chấm chạy. C9–C10 vẫn ghi rủi ro dữ liệu nguồn sai và ca chạm trần bị chặn mà chưa có người nhận.
 - Cổng vòng 1 giảm hoàn sai từ 900.000đ về 0đ và lỗi oan từ 35 về 0 trên S3, nhưng bỏ sót bốn ca do thiếu nguyên nhân hoặc chạm trần lỗi hãng.
 - Report ghi “Được phép cân nhắc 'Tiếp tục'”, phù hợp với đề xuất chạy pilot có giám sát.
