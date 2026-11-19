@@ -34,10 +34,10 @@ Ghi `members` trong `submission/submission.json` theo dạng `"HoVaTen-MSSV"`, k
 - ➜ Mở khoá cho Hiếu: Hiếu cần ba mã lần chạy này để viết quyết định v1.
 
 **Đạt** (HAZOP, checklist và config làm được ngay, không cần chờ eval)
-- [ ] HAZOP vòng 1 (câu 2.4, B4): ít nhất 3 dòng, trong đó ít nhất 2 dòng ngoài kỹ thuật. Có thể dùng lỗi thật ở B2 làm dòng ví dụ.
-- [ ] Checklist go-live 9 nhóm (B5): mỗi dòng một người phụ trách có tên thật trong `world.json`.
-- [ ] Mục `operations` (`pic`, `approver_id`, `reviewers_on_shift`, `review_capacity_per_hour`, `max_queue_wait_minutes`, `stop_conditions`, `alert_channel`) và mục `legal` trong `config/operating_gates.json`.
-- [ ] Runbook phần 1–3 và mục "Giờ cao điểm" (B7.5, B7.6): các con số phải khớp với `operations`.
+- [x] HAZOP vòng 1 (câu 2.4, B4): ít nhất 3 dòng, trong đó ít nhất 2 dòng ngoài kỹ thuật. Có thể dùng lỗi thật ở B2 làm dòng ví dụ.
+- [x] Checklist go-live 9 nhóm (B5): mỗi dòng một người phụ trách có tên thật trong `world.json`.
+- [x] Mục `operations` (`pic`, `approver_id`, `reviewers_on_shift`, `review_capacity_per_hour`, `max_queue_wait_minutes`, `stop_conditions`, `alert_channel`) và mục `legal` trong `config/operating_gates.json`.
+- [x] Runbook phần 1–3 và mục "Giờ cao điểm" (B7.5, B7.6): các con số phải khớp với `operations`.
 - ➜ Mở khoá cho Duy: Duy cần `operations.pic` không còn trống mới qua mốc được.
 
 **Hiếu**
@@ -48,7 +48,7 @@ Ghi `members` trong `submission/submission.json` theo dạng `"HoVaTen-MSSV"`, k
 - [ ] Viết quyết định v1 ở B8 (một quyết định, ba bằng chứng có mã lần chạy, dòng `decision_rule`, kho hoặc hãng có số xấu nhất, ngày quyết định lại). Từ base: kho xấu nhất **HCM**, hãng xấu nhất **VNX**. Commit và push.
 
 **Cả ba cùng làm**
-- [ ] Pre-mortem bốn lăng kính (câu 2.5, B6), đánh dấu 2–3 lý do sẽ thành cổng. Điều kiện đã đủ: base và `T-002@55` đã có, không phải chờ gì thêm.
+- [ ] Pre-mortem bốn lăng kính (câu 2.5, B6), đánh dấu 2–3 lý do sẽ thành cổng. Đạt đã điền đề xuất dựa trên base và `T-002@55`. Cả bàn rà soát và chốt trước khi triển khai cổng.
 
 ### CP4 · Sự cố (Phiếu C). Mọi việc ở đây chờ thẻ được phát.
 
@@ -130,19 +130,19 @@ Một điều học được, một điều còn chưa chắc.
 
 ### Phần việc phụ trách
 
-Vai trong bàn; câu nào của đề, mục nào của phiếu A/B/C, file nào (`lab10/guards.py`, `config/operating_gates.json`, …).
+Vận hành và pháp lý. Phiếu A câu 1.2, 1.4, bốn câu soát và hai ranh giới. Phiếu B mục B4, B5, B7.5–B7.6 và hai mục `operations` / `legal`. Đóng góp đề xuất pre-mortem B6 dựa trên kết quả base và trace T-002@55. Các phần C3–C4, C9–C11 và hồ sơ nộp chờ thẻ, bản đo cuối và C12 theo phân công.
 
 ### Đóng góp cụ thể
 
-...
+Đặt công suất 6 ca/giờ cho một người duyệt, SLA 60 phút, chỉ định Hạnh duyệt và Tùng giữ công tắc. Phân tích hậu quả ghi lỗi oan theo kiện và loại `customer_note`, `recipient_contact` trước khi gửi hãng. Đã dùng Codex để đọc repo, soạn và kiểm tra Phiếu A, Phiếu B cùng cấu hình được phân công.
 
 ### Bằng chứng
 
-Mã commit, mã lần chạy (`runs/<mã>`), dòng trong phiếu.
+13 bài kiểm tra public đạt. Xem Phiếu A mục A1, A2, A4; Phiếu B mục B4, B5, B7.5–B7.6; hai mục `operations` và `legal` trong cấu hình. Phiếu A đã có trên main (fedea79). Phiếu B mục B0–B2 ghi bằng chứng nhóm: base R-base-before-20261119-150403-bde05c và trace T-002@55, dùng để cập nhật B4–B6.
 
 ### Exit ticket
 
-Một điều học được, một điều còn chưa chắc.
+Tôi học được rằng tải duyệt là giới hạn của cả luồng. Một người duyệt 6 ca/giờ vẫn có thể bị ùn nếu ca đến dồn. Tôi còn cần đo tải ca chuyển duyệt ở giờ cao điểm để xác nhận ngưỡng gọi dự phòng.
 
 ## DangQuangDuy-2A202603984
 
