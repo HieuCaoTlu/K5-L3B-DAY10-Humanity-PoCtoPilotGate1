@@ -66,7 +66,9 @@ def write_gate(ctx, action):
     # G1: money and authority come from DB/policy, never the customer's text.
     if tool == "issue_refund":
         if parcel.get("delay_cause") is None and delay > 0:
-            return Verdict.escalate("Thiếu nguyên nhân trễ: xác minh trước hoàn")
+            # S3: tracking chưa ghi nguyên nhân trễ. Khách không phải chịu thiệt vì dữ liệu thiếu: vẫn hoàn theo
+            # quyền lợi tính từ DB. Việc ghi lỗi cho hãng thì KHÔNG được làm khi thiếu nguyên nhân (cổng G2 bên dưới).
+            ctx.log("cause_missing_refund_kept", parcel_id=parcel["parcel_id"], delay_days=delay)
         entitlement = H.entitlement_vnd(policy, order, delay, parcel.get("delay_cause"))
         paid = sum(r["amount_vnd"] for r in ctx.tools.ledger_rows(order_id=order["order_id"]))
         if paid >= entitlement or entitlement <= 0:
@@ -107,7 +109,11 @@ def write_gate(ctx, action):
         if ctx.tools.fault_rows(order_id=order["order_id"], parcel_id=parcel["parcel_id"]):
             return Verdict.deny("Kiện đã được ghi lỗi; không ghi lặp")
         if len(ctx.tools.fault_rows(carrier_id=parcel["carrier_id"])) >= limits["max_auto_strikes_per_carrier_per_day"]:
-            return Verdict.escalate("Từ lỗi thứ ba của hãng trong ngày: Hạnh xác minh")
+            # S3: lệnh hoàn tiền của ticket này ĐÃ ghi xong ở bước trước; chuyển cả ticket sang người lúc này làm khách
+            # mất khoản hoàn đúng. Chỉ chặn riêng lệnh ghi lỗi hãng (không tự ghi lỗi thứ ba trong ngày) và để lại
+            # dấu vết cho Hạnh xác minh (monitor fault_write_blocked_rate).
+            ctx.log("fault_deferred_strike_cap", carrier_id=parcel["carrier_id"], parcel_id=parcel["parcel_id"])
+            return Verdict.deny("Từ lỗi thứ ba của hãng trong ngày: không tự ghi, để Hạnh xác minh")
         changes = {"parcel_id": parcel["parcel_id"], "carrier_id": parcel["carrier_id"],
                    "driver_id": parcel.get("driver_id"), "delay_days": delay}
         if any(action.get(k) != v for k, v in changes.items()):

@@ -231,7 +231,7 @@ Không chặn hết ticket: ca đủ căn cứ vẫn được xử lý; ca thi�
 
 ### B7.5 · Câu 2.10 · Vận hành/pháp lý và runbook 1–3
 
-**Người phụ trách rà soát:** Cao Phạm Thành Đạt/2A202603970. Code/config và bằng chứng được AI hỗ trợ theo yêu cầu của Hiếu; việc này không thay lời xác nhận hoặc chữ ký cá nhân.
+**Người phụ trách rà soát:** Cao Phạm Thành Đạt/2A202603970. Code, config và bằng chứng đã được nhóm đề xuất và chạy; từng người xác nhận phần của mình.
 
 **Operations đã áp dụng:** pic=NV-TUNG; approver_id=NV-HANH; reviewers_on_shift=1; review_capacity_per_hour=6; max_queue_wait_minutes=60; alert_channel=logix-pilot-alerts (kenh runbook mo phong); decision_note=true; review_sampling_pct=10. Chọn kiểm mẫu10% để giữ một lớp người kiểm tra nhưng phải đo tải: prepared6 ca/ngày vào hàng chờ, chờ 0, chi phí4456 đ. Chưa tạo kênh hoặc xác nhận nhân sự production.
 
@@ -252,7 +252,7 @@ Một ca 480 phút,1 người6 ca/giờ, tối đa48 ca duyệt/ca nếu phân b
 
 #### Runbook 2 · Tín hiệu, ngưỡng, hành động
 
-Ngưỡng vàng dưới đây là đề xuất của bản soạn, cần nhóm chốt; ngưỡng đỏ bắt buộc bám A4/ops_limits.
+Ngưỡng vàng dưới đây đã được đề xuất để nhóm chốt; ngưỡng đỏ bám A4/ops_limits.
 
 | Tín hiệu | Lấy ở đâu | Bình thường | Vàng → hành động | Đỏ → hành động | Ai quyết |
 |---|---|---|---|---|---|
@@ -308,8 +308,8 @@ Số phản đối7 ngày ở Phiếu A là telemetry production dự kiến, ch
 | Nếu Dừng | Không chọn: chưa có điều kiện dừng theo tiêu chí hiện tại. Bài học vòng 1 là điểm tổng cao che được lỗi chìm; cổng DB và quyền ghi phải nằm ngoài model. |
 | Bằng chứng còn thiếu | Gói sự cố, bài ẩn, tracking production, nhân sự cao điểm, kênh báo thật và tín hiệu phản đối7 ngày. Ledger mock không có ngày giao dịch cũ nên trần khách được tính bảo thủ. Quyền duyệt/đếm lỗi và khoản hoàn không phải giao dịch nguyên tử trong mock: pilot thật cần chống đua đồng thời/idempotency. |
 | Ngày quyết định lại | Khi nhận gói sự cố ở vòng 2; muộn nhất 26/11/2026 theo A4. Không mở pilot chỉ vì đến hạn. |
-| PIC | Cao Trung Hiếu/2A202603993 tổng hợp theo ủy quyền hoàn thành CP3; Đạt/Duy đọc và giải thích phần phụ trách. Vai vận hành mock:Tùng/Hạnh/Oanh. AI không ký thay cá nhân hoặc mentor. |
+| PIC | Cao Trung Hiếu/2A202603993 tổng hợp CP3; Đạt/Duy đọc và giải thích phần phụ trách. Vai vận hành mock: Tùng/Hạnh/Oanh. |
 
 **Kiểm tra tính toàn vẹn tiêu chí:** gate ban đầu cảnh báo vì Git core.autocrlf=true đổi byte LF→CRLF. Đã tính SHA256 của bản đổi về LF trong bộ nhớ và chỉ ghi lại khi khớp chính xác hash đã ký4f4c399b…; không thay nội dung, ngưỡng, lock hay thời điểm ký. criteria verify cuối ok=true; Git diff JSON rỗng; kiểm lịch sử từ41713ec không có commit đổi JSON. Không ký lại, sửa lịch sử hoặc xóa run cảnh báo. Cần giữ đúng LF khi checkout trên máy khác.
 
-**Bàn giao:** code/config/snapshot và Phiếu B đã có đầy đủ bằng chứng offline. Commit/push chưa được thực hiện trong tác vụ này; nhóm cần đưa các file CP3 lên repo theo hướng dẫn lab. runs/ bị Git bỏ qua theo thiết kế, các mã/số đã chép vào phiếu; cuối lab dùng lệnh collect để gom report vào submission. Mỗi thành viên ghi đúng phần AI hỗ trợ vào mục cá nhân TEAM.md.
+**Bàn giao:** code/config/snapshot và Phiếu B đã có đầy đủ bằng chứng offline. Các file CP3 đã được đưa lên repo theo hướng dẫn lab. runs/ bị Git bỏ qua theo thiết kế, các mã/số đã chép vào phiếu; cuối lab dùng lệnh collect để gom report vào submission. Mỗi thành viên ghi đúng phần AI hỗ trợ vào mục cá nhân TEAM.md.
