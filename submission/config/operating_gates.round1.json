@@ -1,0 +1,43 @@
+{
+    "_huong_dan":  "Cổng kinh doanh, vận hành, pháp lý mà trợ lý PHẢI tuân theo. Bàn điền ở vòng 1, chốt bằng python3 -m lab10.checkpoint, rồi được sửa tiếp ở vòng 2. null = chưa đặt cổng này. Giải thích từng dòng: docs/guide.md, mục Cổng trong config (#ban-do).",
+    "business":  {
+                     "daily_refund_cap_vnd":  2000000,
+                     "cost_budget_per_ticket_vnd":  1500,
+                     "pilot_scope":  {
+                                         "mode":  "all",
+                                         "warehouses":  [
+
+                                                        ],
+                                         "percent":  100
+                                     },
+                     "roi_min":  0.5
+                 },
+    "operations":  {
+                       "pic":  "NV-TUNG",
+                       "approver_id":  "NV-HANH",
+                       "reviewers_on_shift":  1,
+                       "review_capacity_per_hour":  6,
+                       "max_queue_wait_minutes":  60,
+                       "stop_conditions":  [
+                                               "Một lỗi hãng oan hoặc một lần lộ dữ liệu: Tùng tắt tool liên quan trong 15 phút.",
+                                               "Chờ trên 60 phút hoặc có ca ùn: Hạnh nhận tồn, Tùng giảm nhận tự động.",
+                                               "Chi phí tổng mỗi ticket \u003e6000đ hoặc ROI \u003c0,5: không mở rộng, đánh giá lại theo tiêu chí.",
+                                               "Tổng hoàn tự động vượt 2000000đ/ngày: dừng tự hoàn, chuyển duyệt."
+                                           ],
+                       "alert_channel":  "logix-pilot-alerts (kenh runbook mo phong)",
+                       "decision_note":  true,
+                       "review_sampling_pct":  10
+                   },
+    "legal":  {
+                  "pii_fields_blocked_to_third_party":  [
+                                                            "recipient_contact",
+                                                            "recipient_name",
+                                                            "recipient_phone",
+                                                            "customer_note",
+                                                            "name",
+                                                            "phone",
+                                                            "street"
+                                                        ],
+                  "carrier_fault_requires_recorded_cause":  true
+              }
+}

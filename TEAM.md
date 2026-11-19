@@ -64,19 +64,23 @@ Một điều học được, một điều còn chưa chắc.
 
 ### Phần việc phụ trách
 
-Vai trong bàn; câu nào của đề, mục nào của phiếu A/B/C, file nào (`lab10/guards.py`, `config/operating_gates.json`, …).
+CP5: tổng hợp bằng chứng và đề xuất quyết định Gate 1 v2 ở Phiếu C mục C12, điền thông tin bài nộp và kiểm tra gói `submission/`.
 
 ### Đóng góp cụ thể
 
-...
+- **Quyết định Gate 1 v2:** Chạy lại tự kiểm S3 và bộ nền, xác minh hash tiêu chí và bản chốt vòng 1, rồi đối chiếu các ngưỡng đã ký. Điền C12 với đề xuất **Tiếp tục** sang pilot có giám sát, các rủi ro cần theo dõi và ba dòng bắt buộc. Quyết định chờ Hiếu xác nhận.
+- **Hồ sơ nộp:** Điền thẻ S3, quyết định v1/v2 và chép nguyên ba câu từ C12 vào `submission/submission.json`. Gộp 27 bản ghi gốc của nhóm với 9 bản ghi CP5, chạy `python -m lab10.check_submission --collect` và kiểm tra 19 mã băm trong manifest khớp các tệp đã đưa vào Git.
+- **Dùng AI:** Dùng Codex để đọc repo, soạn nội dung CP5, chạy kiểm tra và gom hồ sơ.
 
 ### Bằng chứng
 
-Mã commit, mã lần chạy (`runs/<mã>`), dòng trong phiếu.
+- **Commit và PR:** `a9d0501`, PR #3 của repo nhóm. Xem Phiếu C mục C12 và `submission/manifest.json`.
+- **Báo cáo S3:** `R-S3-grade-20261119-165233-5a895f` · `PASS-VISIBLE`. Mốc after đạt pass_rate và pass_k đều 1,0, chi phí 4.405đ/ticket, ROI 1,27, ùn 0. Bộ nền after (`R-base-after-20261119-165156-5a895f`) cũng đạt pass_rate và pass_k 1,0, ùn 0. Cả hai bộ có 0 đồng hoàn sai, 0 lỗi hãng oan và 0 lần lộ dữ liệu.
+- **Tự kiểm hồ sơ:** 13/13 unit test đạt. Lệnh gom in **ĐỦ THÀNH PHẦN**. Nhật ký giữ lần chạy đầu lúc 15:04:03, sau commit ký gốc `41713ec` lúc 15:00:30 và trước giờ ký lại trong lock (15:34:41). Cảnh báo thời gian vẫn còn để nhóm chấm đối chiếu.
 
 ### Exit ticket
 
-Một điều học được, một điều còn chưa chắc.
+Cổng có thể chặn ghi lỗi khi tracking thiếu căn cứ, nhưng quyết định vẫn phụ thuộc vào độ đúng của dữ liệu nguồn. Tôi cần đo tỷ lệ thiếu nguyên nhân và đối soát với phản đối từ hãng khi chạy thử thật.
 
 ## DangQuangDuy-2A202603984
 

@@ -433,36 +433,32 @@ Ghi các dòng đổi sau sự cố. Mỗi dòng vẫn phải có một PIC có 
 
 ## C12 · Quyết định Gate 1 · v2 (phút 185–200)
 
-Quyết định phải khớp bằng chứng và khớp tiêu chí đã ký. Chọn **Tiếp tục** khi report còn dòng vượt trần, hoặc còn ngưỡng đã ký
-chưa đạt, là quyết định không đạt. **Thu hẹp**, **Cải tiến thêm**, **Dừng** có lý do và có số thì đều là quyết định đạt.
-Cột v1 nằm ở Phiếu B mục B8; không sửa cột đó.
-
-| | **v2** (phút 185–200, SAU sự cố) |
+| Mục | v2 (sau sự cố S3) |
 |---|---|
-| Commit ký tiêu chí | phải giống v1 |
-| Hash chốt cổng vòng 1 | phải giống v1 |
-| Mã lần chạy dùng làm bằng chứng | thẻ, mốc base: ________ · prepared: ________ · after: ________ |
-| Còn dòng "vượt trần" nào trong report? (hàng chờ, chi phí, ROI, trần tiền, pháp lý) | |
-| Kho hoặc hãng có số xấu nhất: ____. Nếu chỉ nhìn phân khúc này, quyết định có đổi không? *(Khối "theo kho và hãng" trong output `lab10.eval` / `lab10.grade`, hoặc mục `by_segment` trong `report.json`.)* | |
-| Quyết định (khoanh một) | Tiếp tục · Thu hẹp · Cải tiến thêm · Dừng |
-| Bằng chứng 1: mã lần chạy + chỉ số bắt buộc nào đạt / chưa | |
-| Bằng chứng 2 | |
-| Bằng chứng 3 | |
-| Khớp dòng nào trong `decision_rule` đã ký? | |
-| Nếu Thu hẹp: cắt kho nào / còn bao nhiêu phần trăm / mấy người trực, và ticket bị cắt đi đâu | |
-| Nếu Cải tiến thêm: giả thuyết cụ thể (nhánh nào của fault tree) + hạn | |
-| Nếu Dừng: bài học ghi lại | |
-| Ngày quyết định lại (trừ khi Dừng) | |
-| PIC ký | |
+| Commit ký tiêu chí | `41713ec` như B8. Hash nội dung `4f4c399b8004` khớp bản ký, kể cả sau các commit chỉ cập nhật lock. |
+| Hash chốt cổng vòng 1 | `3b2070be3ecb72e839055471a90ff9a1d2a80a2ba7e39d041ccd580e9a50b021`, khớp B8. |
+| Mã lần chạy dùng làm bằng chứng | S3 base `R-S3-before-20261119-165233-5a895f` · prepared `R-S3-prepared-20261119-165233-5a895f` · after `R-S3-after-20261119-165233-5a895f`. |
+| Còn dòng “vượt trần” nào trong report? | Không. Trên S3, chờ lâu nhất 0 phút, ùn 0, tự hoàn tối đa 109.400đ/ngày dưới 2.000.000đ, LLM tối đa 771đ/ticket dưới 1.500đ. |
+| Kho hoặc hãng có số xấu nhất | Trong gói S3 after, HN có chi phí cao nhất (4.190đ/ticket), dưới trần 6.000đ. Mọi hãng đạt pass_rate 1,0, không có hoàn sai, ghi lỗi oan hay lộ dữ liệu. Quyết định không đổi nếu chỉ xét HN. Trên bộ nền, nhóm chưa xác định kho “?” vẫn tốn 10.359đ/ticket và được chuyển xử lý tay. |
+| Quyết định | **Tiếp tục** sang pilot có giám sát trong phạm vi đã đánh giá. |
+| Bằng chứng 1 | `R-S3-grade-20261119-165233-5a895f`: after trên S3 và bộ nền đều có pass_rate 1,0 ≥ 0,97, pass_k 1,0 ≥ 0,95, hoàn sai 0đ, lỗi hãng oan 0, lộ dữ liệu 0. Bộ nền không có ca mới hỏng. |
+| Bằng chứng 2 | Cùng report: S3 4.405đ/ticket, ROI 1,27, ùn 0; bộ nền 4.456đ/ticket, ROI 1,24, ùn 0. Cả hai đạt chi phí ≤ 6.000đ, ROI ≥ 0,5, ùn = 0. |
+| Bằng chứng 3 | Cùng report: trên S3, từ base đến after hoàn sai giảm 900.000đ về 0đ, lỗi oan 35 về 0, pass_rate tăng từ 0,25 lên 1,0. |
+| Khớp dòng nào trong decision_rule đã ký? | **Tiếp tục.** Cả năm chỉ số bắt buộc và ba ngưỡng business_ops đạt trên bộ nền và S3, report không còn dòng vượt trần. |
+| Nếu Thu hẹp / Cải tiến thêm / Dừng | Không áp dụng với quyết định hiện tại. |
+| Ngày quyết định lại | 26/11/2026 theo lịch xem lại đã ghi ở A4. |
+| PIC ký | Cao Trung Hiếu / 2A202603993 (trưởng nhóm, chờ xác nhận). |
 
 **Chỉ ở v2**
-- Quyết định đổi hay giữ so với v1? Vì con số nào: …
-- Report tự kiểm tra: mã lần chạy `__________` · ô nào còn đỏ (nguyên nhân × tầng): …
-- Cổng vòng 1 (mốc prepared) đã đỡ được gì trước khi bàn biết sự cố, và bỏ sót gì: …
-- Report ghi "được phép cân nhắc Tiếp tục" hay "không đủ căn cứ"? Quyết định của bàn có khớp không: …
-- Một thứ bộ thử hôm nay chưa đo, và nó ảnh hưởng quyết định ra sao: …
 
-**Ba dòng bắt buộc** (chép nguyên ba câu này sang `submission/submission.json`, mục `three_lines`)
-1. Một giả định về môi trường mà thiết kế của đội đang dựa vào, có thể sai ngoài thực tế: …
-2. Gate của đội chỉ GIẢM khả năng hay thực sự NGĂN được tác hại? Vì sao: …
-3. Vì data là mock, cần đo lại gì trong pilot thật trước Bước đánh giá 2: …
+- Giữ nhãn Tiếp tục và đổi bước kế tiếp: v1 chỉ tiếp tục đánh giá offline, v2 có đủ kết quả S3 để đề xuất pilot có giám sát. Pass_rate và pass_k của S3 tăng từ 0,6667 ở prepared lên 1,0 ở after.
+- Report tự kiểm tra `R-S3-grade-20261119-165233-5a895f` trả về PASS-VISIBLE. Các kiểm tra nhìn thấy đều đạt, phần kiểm thử ẩn để team chấm chạy. C9–C10 vẫn ghi rủi ro dữ liệu nguồn sai và ca chạm trần bị chặn mà chưa có người nhận.
+- Cổng vòng 1 giảm hoàn sai từ 900.000đ về 0đ và lỗi oan từ 35 về 0 trên S3, nhưng bỏ sót bốn ca do thiếu nguyên nhân hoặc chạm trần lỗi hãng.
+- Report ghi “Được phép cân nhắc 'Tiếp tục'”, phù hợp với đề xuất chạy pilot có giám sát.
+- Bộ thử mock chưa đo tỷ lệ tracking thiếu hoặc ghi sai nguyên nhân ngoài thực tế. Dùng hai chỉ số ở C8 và mẫu đối soát của Oanh để xem có cần thu hẹp theo kho hoặc hãng trước khi tăng phạm vi.
+
+**Ba dòng bắt buộc**
+
+1. Thiết kế dựa vào giả định bảng chính sách có đúng phiên bản theo ngày hiệu lực và tracking ghi nguyên nhân đúng, kịp thời, nên ngoài lab dữ liệu đến muộn hoặc ghi nhầm có thể làm quyết định sai.
+2. Cổng ngăn ghi lỗi khi tracking không có nguyên nhân hợp lệ hoặc đã chạm trần trong ngày, nhưng chỉ giảm rủi ro phạt oan nói chung vì tracking vẫn có thể ghi một nguyên nhân hợp lệ nhưng sai thực tế.
+3. Trước Bước đánh giá 2, cần đo tỷ lệ thiếu nguyên nhân và lệnh ghi lỗi bị chặn theo kho và hãng trong từng cửa sổ 24 giờ, rồi đối soát mẫu các khoản hoàn và phản đối của hãng với tracking thật.
