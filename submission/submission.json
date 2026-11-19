@@ -5,12 +5,12 @@
     "CaoPhamThanhDat-2A202603970",
     "DangQuangDuy-2A202603984"
   ],
-  "incident": "",
-  "decision_v1": "",
-  "decision_v2": "",
+  "incident": "S3",
+  "decision_v1": "Tiếp tục",
+  "decision_v2": "Tiếp tục",
   "three_lines": {
-    "environment_assumption": "",
-    "reduce_or_prevent": "",
-    "measure_in_pilot": ""
+    "environment_assumption": "Thiết kế dựa vào giả định bảng chính sách có đúng phiên bản theo ngày hiệu lực và tracking ghi nguyên nhân đúng, kịp thời, nên ngoài lab dữ liệu đến muộn hoặc ghi nhầm có thể làm quyết định sai.",
+    "reduce_or_prevent": "Cổng ngăn ghi lỗi khi tracking không có nguyên nhân hợp lệ hoặc đã chạm trần trong ngày, nhưng chỉ giảm rủi ro phạt oan nói chung vì tracking vẫn có thể ghi một nguyên nhân hợp lệ nhưng sai thực tế.",
+    "measure_in_pilot": "Trước Bước đánh giá 2, cần đo tỷ lệ thiếu nguyên nhân và lệnh ghi lỗi bị chặn theo kho và hãng trong từng cửa sổ 24 giờ, rồi đối soát mẫu các khoản hoàn và phản đối của hãng với tracking thật."
   }
 }

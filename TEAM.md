@@ -64,19 +64,19 @@ Một điều học được, một điều còn chưa chắc.
 
 ### Phần việc phụ trách
 
-Vai trong bàn; câu nào của đề, mục nào của phiếu A/B/C, file nào (`lab10/guards.py`, `config/operating_gates.json`, …).
+CP5: tổng hợp bằng chứng và đề xuất quyết định Gate 1 v2 ở Phiếu C mục C12, điền thông tin bài nộp và kiểm tra gói `submission/`.
 
 ### Đóng góp cụ thể
 
-...
+Đối chiếu hai bộ thử với tiêu chí đã ký, ghi giới hạn còn lại của dữ liệu mock và chép ba dòng từ C12 vào `submission/submission.json`. Dùng Codex để đọc repo, soạn nội dung CP5 và chạy kiểm tra.
 
 ### Bằng chứng
 
-Mã commit, mã lần chạy (`runs/<mã>`), dòng trong phiếu.
+Phiếu C mục C12 và báo cáo `R-S3-grade-20261119-165233-5a895f`. Trên S3 after, pass_rate và pass_k đều 1,0, chi phí 4.405đ/ticket và ROI 1,27. Bộ nền after cũng đạt hai chỉ số chất lượng và không có ca ùn.
 
 ### Exit ticket
 
-Một điều học được, một điều còn chưa chắc.
+Cổng có thể chặn ghi lỗi khi tracking thiếu căn cứ, nhưng quyết định vẫn phụ thuộc vào độ đúng của dữ liệu nguồn. Tôi cần đo tỷ lệ thiếu nguyên nhân và đối soát với phản đối từ hãng khi chạy thử thật.
 
 ## DangQuangDuy-2A202603984
 
