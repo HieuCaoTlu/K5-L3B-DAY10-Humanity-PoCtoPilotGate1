@@ -7,18 +7,22 @@
     "roi_min": null
   },
   "operations": {
-    "pic": "",
-    "approver_id": "",
+    "pic": "Lê Thanh Tùng",
+    "approver_id": "NV-HANH",
     "reviewers_on_shift": 1,
-    "review_capacity_per_hour": null,
-    "max_queue_wait_minutes": null,
-    "stop_conditions": [],
-    "alert_channel": "",
+    "review_capacity_per_hour": 6,
+    "max_queue_wait_minutes": 60,
+    "stop_conditions": [
+      "Thu hẹp pilot nếu ca chờ vượt 60 phút, có ca ùn hoặc tải duyệt vượt 6 ca/giờ mà chưa có hỗ trợ.",
+      "Tắt thao tác liên quan khi xác nhận hoàn sai, vượt trần hoàn, ghi lỗi oan hoặc lộ dữ liệu cá nhân.",
+      "Dừng trợ lý nếu ảnh hưởng nhiều thao tác, mất khả năng đối soát hoặc không cô lập được sự cố."
+    ],
+    "alert_channel": "#logix-ops-pilot",
     "decision_note": false,
     "review_sampling_pct": 0
   },
   "legal": {
-    "pii_fields_blocked_to_third_party": [],
-    "carrier_fault_requires_recorded_cause": false
+    "pii_fields_blocked_to_third_party": ["customer_note", "recipient_contact"],
+    "carrier_fault_requires_recorded_cause": true
   }
 }

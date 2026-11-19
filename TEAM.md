@@ -30,7 +30,7 @@ Quy tắc chung: chỉ **Hiếu** push lên GitHub. Đạt và Duy gửi file ho
 
 **Đạt và Duy**
 - [ ] Clone repo, chạy `python -m unittest discover -s tests` cho tới khi thấy `Ran 13 tests … OK`.
-- [ ] Đạt: đọc `data/world.json` (mục `staff`, `ops_limits`, `ops_facts`) và `docs/guide.md`.
+- [x] Đạt: đọc `data/world.json` (mục `staff`, `ops_limits`, `ops_facts`) và `docs/guide.md`. Đã clone và chạy 13 test public, cả 13 đạt.
 - [ ] Duy: đọc `lab10/agent.py`, `lab10/tools.py`, `lab10/guards.py` để hiểu trợ lý đang làm gì.
 
 ### CP2 · Ký tiêu chí (Phiếu A). Tuyệt đối chưa ai chạy `eval`.
@@ -40,8 +40,8 @@ Quy tắc chung: chỉ **Hiếu** push lên GitHub. Đạt và Duy gửi file ho
 - ➜ Mở khoá cho Hiếu: Hiếu cần câu này xong để chốt ngưỡng.
 
 **Đạt**
-- [ ] Phiếu A câu 1.2 (mục tiêu nhìn từ chị Oanh và chị Hạnh) và câu 1.4 (cách đo trên production).
-- [ ] Bốn câu soát và hai câu "ranh giới đầu ra" (không cần chép vào JSON).
+- [x] Phiếu A câu 1.2 (mục tiêu nhìn từ chị Oanh và chị Hạnh) và câu 1.4 (cách đo trên production).
+- [x] Bốn câu soát và hai câu "ranh giới đầu ra" (không cần chép vào JSON).
 - ➜ Mở khoá cho Hiếu: như trên.
 
 **Hiếu**
@@ -66,10 +66,10 @@ Quy tắc chung: chỉ **Hiếu** push lên GitHub. Đạt và Duy gửi file ho
 - ➜ Mở khoá cho Hiếu: Hiếu cần ba mã lần chạy này để viết quyết định v1.
 
 **Đạt** (HAZOP, checklist và config làm được ngay, không cần chờ eval)
-- [ ] HAZOP vòng 1 (câu 2.4, B4): ít nhất 3 dòng, trong đó ít nhất 2 dòng ngoài kỹ thuật.
-- [ ] Checklist go-live 9 nhóm (B5): mỗi dòng một người phụ trách có tên thật trong `world.json`.
-- [ ] Mục `operations` (`pic`, `approver_id`, `reviewers_on_shift`, `review_capacity_per_hour`, `max_queue_wait_minutes`, `stop_conditions`, `alert_channel`) và mục `legal` trong `config/operating_gates.json`.
-- [ ] Runbook phần 1–3 và mục "Giờ cao điểm" (B7.5, B7.6): các con số phải khớp với `operations`.
+- [x] HAZOP vòng 1 (câu 2.4, B4): ít nhất 3 dòng, trong đó ít nhất 2 dòng ngoài kỹ thuật.
+- [x] Checklist go-live 9 nhóm (B5): mỗi dòng một người phụ trách có tên thật trong `world.json`.
+- [x] Mục `operations` (`pic`, `approver_id`, `reviewers_on_shift`, `review_capacity_per_hour`, `max_queue_wait_minutes`, `stop_conditions`, `alert_channel`) và mục `legal` trong `config/operating_gates.json`.
+- [x] Runbook phần 1–3 và mục "Giờ cao điểm" (B7.5, B7.6): các con số phải khớp với `operations`.
 - ➜ Mở khoá cho Duy: Duy cần `operations.pic` không còn trống mới qua mốc được.
 
 **Hiếu**
@@ -162,19 +162,19 @@ Một điều học được, một điều còn chưa chắc.
 
 ### Phần việc phụ trách
 
-Vai trong bàn; câu nào của đề, mục nào của phiếu A/B/C, file nào (`lab10/guards.py`, `config/operating_gates.json`, …).
+Vận hành và pháp lý. Phiếu A câu 1.2, 1.4, bốn câu soát và hai ranh giới. Phiếu B mục B4, B5, B7.5–B7.6 và hai mục `operations` / `legal`. Tham gia B6 khi có kết quả bộ nền. Các phần C3–C4, C9–C11 và hồ sơ nộp chờ thẻ, bản đo cuối và C12 theo phân công.
 
 ### Đóng góp cụ thể
 
-...
+Đặt công suất 6 ca/giờ cho một người duyệt, SLA 60 phút, chỉ định Hạnh duyệt và Tùng giữ công tắc. Phân tích hậu quả ghi lỗi oan theo kiện và loại `customer_note`, `recipient_contact` trước khi gửi hãng. Đã dùng Codex để đọc repo, soạn và kiểm tra Phiếu A, Phiếu B cùng cấu hình được phân công.
 
 ### Bằng chứng
 
-Mã commit, mã lần chạy (`runs/<mã>`), dòng trong phiếu.
+13 bài kiểm tra public đạt. Xem Phiếu A mục A1, A2, A4; Phiếu B mục B4, B5, B7.5–B7.6; hai mục `operations` và `legal` trong cấu hình. Phiếu A có commit 562f6b1 (PR #1). Chưa có mã eval vì nhóm chưa ký tiêu chí.
 
 ### Exit ticket
 
-Một điều học được, một điều còn chưa chắc.
+Tôi học được rằng tải duyệt là giới hạn của cả luồng. Một người duyệt 6 ca/giờ vẫn có thể bị ùn nếu ca đến dồn. Tôi còn cần đo tải ca chuyển duyệt ở giờ cao điểm để xác nhận ngưỡng gọi dự phòng.
 
 ## DangQuangDuy-2A202603984
 
